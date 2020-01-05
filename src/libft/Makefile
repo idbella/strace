@@ -6,7 +6,7 @@
 #    By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/06 16:23:12 by sid-bell          #+#    #+#              #
-#    Updated: 2019/12/22 21:42:28 by sid-bell         ###   ########.fr        #
+#    Updated: 2020/01/05 20:22:44 by sid-bell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ ft_strnstr.o ft_strpos.o ft_strrchr.o ft_strrepeat.o ft_strreplace.o ft_strrev.o
 ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o get_next_line.o ft_free_array.o \
 ft_fstrjoin.o ft_fstrsub.o ft_join.o ft_isalphanum.o ft_isnumber.o ft_arraylen.o
 
-CFLAGS = -Wall -Wextra -Werror -I../includes
+CFLAGS = -Wall -Wextra -Werror -I../include
 
 all : $(NAME)
 
