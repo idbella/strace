@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+         #
+#    By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/01 06:02:07 by sid-bell          #+#    #+#              #
-#    Updated: 2020/01/05 19:51:39 by sid-bell         ###   ########.fr        #
+#    Updated: 2020/07/16 23:47:54 by sid-bell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,18 +20,16 @@ HINC = src/include/ft_strace.h src/include/libft.h
 
 INC= -Isrc/include
 
-SRC=src/main.c
+OBJ=src/main.o src/validate.o src/run.o src/get_syscalls.o src/error.o
 
 CFLAGS = $(INC) $(FLAGS)
 
 CC=gcc
 
-OBJ=$(SRC:.c=.o)
-
 all: $(LIBFT)  $(NAME) 
 
 $(NAME): $(HINC) $(OBJ)
-	gcc $(LIBFT) $(INC) $(FLAGS) $(OBJ) -o $(NAME)
+	gcc $(INC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	make -C src/libft

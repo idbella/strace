@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strace.h                                        :+:      :+:    :+:   */
+/*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/05 19:47:32 by sid-bell          #+#    #+#             */
-/*   Updated: 2020/07/16 23:42:09 by sid-bell         ###   ########.fr       */
+/*   Created: 2020/07/16 23:37:15 by sid-bell          #+#    #+#             */
+/*   Updated: 2020/07/16 23:37:21 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STRACE_H
-# define FT_STRACE_H
-# include "libft.h"
-# include <sys/ptrace.h>
-# include <sys/types.h>
-# include <signal.h>
-# include <sys/stat.h>
-# include <sys/wait.h>
-# include <stdio.h>
-# include <sys/user.h>
-# include <sys/reg.h>
+#include "ft_strace.h"
 
-int		ft_validatefile(char *file);
-void	ft_run(char **argv);
-void	ft_get_syscalls(int pid);
-void    ft_die(char *str);
-#endif
+int		ft_validatefile(char *file)
+{
+	struct stat st;
+	if (access(file, F_OK))
+	{
+		ft_printf("no such file or directory\n");
+		return (1);
+	}
+	if (access(file, X_OK))
+	{
+		ft_printf("permission denied\n", file);
+		return (1);
+	}
+	if (!stat(file, &st) && !S_ISREG(st.st_mode))
+	{
+		ft_printf("invalid file format\n");
+		return (1);
+	}
+	return (0);
+}
