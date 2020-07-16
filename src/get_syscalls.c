@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 23:38:03 by sid-bell          #+#    #+#             */
-/*   Updated: 2020/07/16 23:43:53 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/07/17 00:42:42 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	ft_get_syscalls(int pid)
 	while (pid == waitpid(pid, &status, WUNTRACED))
 	{
 		if (WIFSTOPPED(status)){
-			if (in < 0)
+			if (in > 0)
 			{
                 if (ptrace(PTRACE_GETREGS, pid, NULL, &regs) < 0)
 					ft_die("can't get process registers");
-				ft_printf("call to %d\n", regs.orig_rax);
+				ft_printf("call to %s\n", ft_get_syscall_name(regs.orig_rax));
 			}
 			in *= -1;
 			ptrace(PTRACE_SYSCALL, pid, NULL, NULL);

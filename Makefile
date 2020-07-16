@@ -6,7 +6,7 @@
 #    By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/01 06:02:07 by sid-bell          #+#    #+#              #
-#    Updated: 2020/07/16 23:47:54 by sid-bell         ###   ########.fr        #
+#    Updated: 2020/07/17 00:18:12 by sid-bell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ HINC = src/include/ft_strace.h src/include/libft.h
 
 INC= -Isrc/include
 
-OBJ=src/main.o src/validate.o src/run.o src/get_syscalls.o src/error.o
+OBJ=src/main.o src/validate.o src/run.o src/get_syscalls.o src/error.o src/syscall_name.o
 
 CFLAGS = $(INC) $(FLAGS)
 

@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 23:37:30 by sid-bell          #+#    #+#             */
-/*   Updated: 2020/07/16 23:37:31 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/07/17 00:18:49 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_run(char **argv)
 {
 	pid_t pid;
-	int status;
 
 	if (!(pid = fork()))
 	{
