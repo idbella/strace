@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 01:23:51 by sid-bell          #+#    #+#             */
-/*   Updated: 2019/12/25 17:46:15 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/07/28 13:52:27 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct			s_line
 	char			*str1;
 	struct s_line	*next;
 }						t_line;
-
+char					*ft_uitoa(unsigned long long int n, int base);
 size_t					ft_arraylen(char **ptr);
 char					ft_isalphanum(char *str);
 char					*ft_join(char *f, ...);
