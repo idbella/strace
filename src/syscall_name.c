@@ -6,12 +6,13 @@
 /*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 23:55:26 by sid-bell          #+#    #+#             */
-/*   Updated: 2020/07/31 18:14:54 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/08/01 01:11:54 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_strace.h"
 #include <fcntl.h>
+#include <sys/ioctl.h>
 
 #define NO_ARG 0, {}
 #define INT_ARG {INTEGER, 0, {}}
@@ -40,12 +41,12 @@ t_syscall syscalls[SYSCALLS_COUNT] = {
 	}},
 	{"mprotect", 3, {PTR_ARG, INT_ARG,
 		{DEFINE, 4, {{PROT_NONE, "PROT_NONE"}, {PROT_READ, "PROT_READ"}, {PROT_WRITE, "PROT_WRITE"}, {PROT_EXEC, "PROT_EXEC"}}}}},
-	{"munmap", NO_ARG},
+	{"munmap", 2, {PTR_ARG, INT_ARG}},
 	{"brk", 1, {PTR_ARG}},
-	{"rt_sigaction", NO_ARG},
-	{"rt_sigprocmask", NO_ARG},
+	{"rt_sigaction", 4, {INT_ARG, PTR_ARG, PTR_ARG, INT_ARG}},
+	{"rt_sigprocmask", 4, {INT_ARG, PTR_ARG, PTR_ARG, INT_ARG}},
 	{"rt_sigreturn", NO_ARG},
-	{"ioctl", NO_ARG},
+	{"ioctl", 3, {INT_ARG, INT_ARG, PTR_ARG}},
 	{"pread64", 4, {INT_ARG, STR_ARG, INT_ARG, INT_ARG}},
 	{"pwrite64", NO_ARG},
 	{"readv", NO_ARG},
@@ -246,8 +247,8 @@ t_syscall syscalls[SYSCALLS_COUNT] = {
 	{"epoll_ctl_old", NO_ARG},
 	{"epoll_wait_old", NO_ARG},
 	{"remap_file_pages", NO_ARG},
-	{"getdents64", NO_ARG},
-	{"set_tid_address", NO_ARG},
+	{"getdents64", 3, {INT_ARG, PTR_ARG, INT_ARG}},
+	{"set_tid_address", 1, {PTR_ARG}},
 	{"restart_syscall", NO_ARG},
 	{"semtimedop", NO_ARG},
 	{"fadvise64", NO_ARG},
@@ -287,12 +288,15 @@ t_syscall syscalls[SYSCALLS_COUNT] = {
 	{"inotify_rm_watch", NO_ARG},
 	{"migrate_pages", NO_ARG},
 	{"openat", 3, {
-			{DEFINE, 1, {{AT_FDCWD, "AT_FDCWD"}}},
-			STR_ARG, 
-			{DEFINE, 4, {{O_NONBLOCK, "O_NONBLOCK"}, {O_RDONLY, "O_RDONLY"},
-			{__O_CLOEXEC, "O_CLOEXEC"},{__O_DIRECTORY, "O_DIRECTORY"}}}
+		{DEFINE, 1, {{AT_FDCWD, "AT_FDCWD"}}},
+		STR_ARG, 
+		{
+			DEFINE, 4, {
+				{O_NONBLOCK, "O_NONBLOCK"}, {O_RDONLY, "O_RDONLY"},
+				{__O_CLOEXEC, "O_CLOEXEC"},{__O_DIRECTORY, "O_DIRECTORY"}
+			}
 		}
-	},
+	}},
 	{"mkdirat", NO_ARG},
 	{"mknodat", NO_ARG},
 	{"fchownat", NO_ARG},
@@ -308,7 +312,7 @@ t_syscall syscalls[SYSCALLS_COUNT] = {
 	{"pselect6", NO_ARG},
 	{"ppoll", NO_ARG},
 	{"unshare", NO_ARG},
-	{"set_robust_list", NO_ARG},
+	{"set_robust_list", 2, {PTR_ARG, INT_ARG}},
 	{"get_robust_list", NO_ARG},
 	{"splice", NO_ARG},
 	{"tee", NO_ARG},
