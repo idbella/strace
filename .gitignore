@@ -6,7 +6,7 @@
 *.ko
 *.obj
 *.elf
-
+test/*
 .history
 
 # Linker output

@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 23:55:26 by sid-bell          #+#    #+#             */
-/*   Updated: 2020/08/01 01:11:54 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/08/06 13:47:32 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,103 @@ t_syscall syscalls[SYSCALLS_COUNT] = {
 	{"mmap", 6,{
 		PTR_ARG,
 		INT_ARG,
-		{DEFINE, 3, {{PROT_READ, "PROT_READ"}, {PROT_WRITE, "PROT_WRITE"}, {PROT_EXEC, "PROT_EXEC"}}},
-		{DEFINE, 5, {{MAP_PRIVATE, "MAP_PRIVATE"}, {MAP_SHARED, "MAP_SHARED"},
+		{BITS, 3, {{PROT_READ, "PROT_READ"}, {PROT_WRITE, "PROT_WRITE"}, {PROT_EXEC, "PROT_EXEC"}}},
+		{BITS, 5, {{MAP_PRIVATE, "MAP_PRIVATE"}, {MAP_SHARED, "MAP_SHARED"},
 					{MAP_DENYWRITE, "MAP_DENYWRITE"}, {MAP_FIXED, "MAP_FIXED"},
 					{MAP_ANONYMOUS, "MAP_ANONYMOUS"}}},
 		INT_ARG,
 		{HEXA, NO_ARG}
 	}},
 	{"mprotect", 3, {PTR_ARG, INT_ARG,
-		{DEFINE, 4, {{PROT_NONE, "PROT_NONE"}, {PROT_READ, "PROT_READ"}, {PROT_WRITE, "PROT_WRITE"}, {PROT_EXEC, "PROT_EXEC"}}}}},
+		{BITS, 4, {{PROT_NONE, "PROT_NONE"}, {PROT_READ, "PROT_READ"}, {PROT_WRITE, "PROT_WRITE"}, {PROT_EXEC, "PROT_EXEC"}}}}},
 	{"munmap", 2, {PTR_ARG, INT_ARG}},
 	{"brk", 1, {PTR_ARG}},
 	{"rt_sigaction", 4, {INT_ARG, PTR_ARG, PTR_ARG, INT_ARG}},
 	{"rt_sigprocmask", 4, {INT_ARG, PTR_ARG, PTR_ARG, INT_ARG}},
 	{"rt_sigreturn", NO_ARG},
-	{"ioctl", 3, {INT_ARG, INT_ARG, PTR_ARG}},
-	{"pread64", 4, {INT_ARG, STR_ARG, INT_ARG, INT_ARG}},
+	{"ioctl", 3, {INT_ARG,
+		{
+			LETERAL, 10, {
+				{TCGETS, "TCGETS"},
+				{TCSETS, "TCSETS"},
+				{TCSETSW, "TCSETSW"},
+				{TCSETSF, "TCSETSF"},
+				{TCGETA, "TCGETA"},
+				{TCSETA, "TCSETA"},
+				{TCSETAW, "TCSETAW"},
+				{TCSETAF, "TCSETAF"},
+				{TCSBRK, "TCSBRK"},
+				{TCXONC, "TCXONC"},
+				{TCFLSH, "TCFLSH"},
+				{TIOCEXCL, "TIOCEXCL"},
+				{TIOCNXCL, "TIOCNXCL"},
+				{TIOCSCTTY, "TIOCSCTTY"},
+				{TIOCGPGRP, "TIOCGPGRP"},
+				{TIOCSPGRP, "TIOCSPGRP"},
+				{TIOCOUTQ, "TIOCOUTQ"},
+				{TIOCSTI, "TIOCSTI"},
+				{TIOCGWINSZ, "TIOCGWINSZ"},
+				{TIOCSWINSZ, "TIOCSWINSZ"},
+				{TIOCMGET, "TIOCMGET"},
+				{TIOCMBIS, "TIOCMBIS"},
+				{TIOCMBIC, "TIOCMBIC"},
+				{TIOCMSET, "TIOCMSET"},
+				{TIOCGSOFTCAR, "TIOCGSOFTCAR"},
+				{TIOCSSOFTCAR, "TIOCSSOFTCAR"},
+				{FIONREAD, "FIONREAD"},
+				{TIOCLINUX, "TIOCLINUX"},
+				{TIOCCONS, "TIOCCONS"},
+				{TIOCGSERIAL, "TIOCGSERIAL"},
+				{TIOCSSERIAL, "TIOCSSERIAL"},
+				{TIOCPKT, "TIOCPKT"},
+				{FIONBIO, "FIONBIO"},
+				{TIOCNOTTY, "TIOCNOTTY"},
+				{TIOCSETD, "TIOCSETD"},
+				{TIOCGETD, "TIOCGETD"},
+				{TCSBRKP, "TCSBRKP"},
+				{TIOCSBRK, "TIOCSBRK"},
+				{TIOCCBRK, "TIOCCBRK"},
+				{TIOCGSID, "TIOCGSID"},
+				{TIOCGRS485, "TIOCGRS485"},
+				{TIOCSRS485, "TIOCSRS485"},
+				{TCGETX, "TCGETX"},
+				{TCSETX, "TCSETX"},
+				{TCSETXF, "TCSETXF"},
+				{TCSETXW, "TCSETXW"},
+				{TIOCVHANGUP, "TIOCVHANGUP"},
+				{FIONCLEX, "FIONCLEX"},
+				{FIOCLEX, "FIOCLEX"},
+				{FIOASYNC, "FIOASYNC"},
+				{TIOCSERCONFIG, "TIOCSERCONFIG"},
+				{TIOCSERGWILD, "TIOCSERGWILD"},
+				{TIOCSERSWILD, "TIOCSERSWILD"},
+				{TIOCGLCKTRMIOS, "TIOCGLCKTRMIOS"},
+				{TIOCSLCKTRMIOS, "TIOCSLCKTRMIOS"},
+				{TIOCSERGSTRUCT, "TIOCSERGSTRUCT"},
+				{TIOCSERGETLSR, "TIOCSERGETLSR"},
+				{TIOCSERGETMULTI, "TIOCSERGETMULTI"},
+				{TIOCSERSETMULTI, "TIOCSERSETMULTI"},
+				{TIOCMIWAIT, "TIOCMIWAIT"},
+				{TIOCGICOUNT, "TIOCGICOUNT"},
+				{FIOQSIZE, "FIOQSIZE"},
+				{TIOCPKT_DATA, "TIOCPKT_DATA"},
+				{TIOCPKT_FLUSHREAD, "TIOCPKT_FLUSHREAD"},
+				{TIOCPKT_FLUSHWRITE, "TIOCPKT_FLUSHWRITE"},
+				{TIOCPKT_STOP, "TIOCPKT_STOP"},
+				{TIOCPKT_START, "TIOCPKT_START"},
+				{TIOCPKT_NOSTOP, "TIOCPKT_NOSTOP"},
+				{TIOCPKT_DOSTOP, "TIOCPKT_DOSTOP"},
+				{TIOCPKT_IOCTL, "TIOCPKT_IOCTL"},
+				{TIOCSER_TEMT, "TIOCSER_TEMT"}
+			}
+		},
+		PTR_ARG
+	}},
+	{"pread64", 4, {INT_ARG, PTR_ARG, INT_ARG, INT_ARG}},
 	{"pwrite64", NO_ARG},
 	{"readv", NO_ARG},
 	{"writev", NO_ARG},
-	{"access", 2, {STR_ARG, {DEFINE, 3, {{F_OK, "F_OK"}, {R_OK, "R_OK"}, {X_OK, "X_OK"}}}}},
+	{"access", 2, {STR_ARG, {BITS, 3, {{F_OK, "F_OK"}, {R_OK, "R_OK"}, {X_OK, "X_OK"}}}}},
 	{"pipe", NO_ARG},
 	{"select", NO_ARG},
 	{"sched_yield", NO_ARG},
@@ -288,10 +365,10 @@ t_syscall syscalls[SYSCALLS_COUNT] = {
 	{"inotify_rm_watch", NO_ARG},
 	{"migrate_pages", NO_ARG},
 	{"openat", 3, {
-		{DEFINE, 1, {{AT_FDCWD, "AT_FDCWD"}}},
+		{BITS, 1, {{AT_FDCWD, "AT_FDCWD"}}},
 		STR_ARG, 
 		{
-			DEFINE, 4, {
+			BITS, 4, {
 				{O_NONBLOCK, "O_NONBLOCK"}, {O_RDONLY, "O_RDONLY"},
 				{__O_CLOEXEC, "O_CLOEXEC"},{__O_DIRECTORY, "O_DIRECTORY"}
 			}
@@ -388,13 +465,31 @@ t_syscall syscalls[SYSCALLS_COUNT] = {
 	{"clone3", NO_ARG}
 };
 
-void	ft_format(int id, struct user_regs_struct *ptr)
+u_int64_t ft_getregister(t_registers *ptr, int index)
+{
+	u_int64_t reg;
+
+	reg = ptr->rdi;
+	if (index == 1)
+		reg = ptr->rsi;
+	else if (index == 2)
+		reg = ptr->rdx;
+	else if (index == 3)
+		reg = ptr->r10;
+	else if (index == 4)
+		reg = ptr->r8;
+	else if (index == 5)
+		reg = ptr->r9;
+	return (reg);
+}
+
+void	ft_format(pid_t pid, int id, t_registers *ptr)
 {
 	t_syscall	*sys;
 	t_arg		*arg;
 	int			index;
 	u_int64_t	reg;
-	
+
 	if (id < SYSCALLS_COUNT) {
 		sys = &syscalls[id];
 		fprintf(stderr, "%s(", sys->name);
@@ -402,21 +497,11 @@ void	ft_format(int id, struct user_regs_struct *ptr)
 		while (index < sys->args_count)
 		{
 			arg = &sys->args[index];
-			reg = ptr->rdi;
-			if (index == 1)
-				reg = ptr->rsi;
-			else if (index == 2)
-				reg = ptr->rdx;
-			else if (index == 3)
-				reg = ptr->r10;
-			else if (index == 4)
-				reg = ptr->r8;
-			else if (index == 5)
-				reg = ptr->r9;
+			reg = ft_getregister(ptr, index);
 			if (arg->type == INTEGER)
 				fprintf(stderr, "%d", (int)reg);
 			else if (arg->type == STRING){
-				fprintf(stderr, "char *s");
+				ft_getstring(id, pid, reg);
 			}
 			else if (arg->type == POINTER){
 				if (reg == 0)
@@ -426,29 +511,10 @@ void	ft_format(int id, struct user_regs_struct *ptr)
 			}
 			else if (arg->type == HEXA)
 				fprintf(stderr, "%lx", reg);
-			else if (arg->type == DEFINE)
-			{
-				int i = 0;
-				char *str = NULL;
-				// if (id == SYS_access)
-				// 	fprintf(stderr, "%ld\n", reg);
-				while (i < arg->defcount)
-				{
-					
-					t_define *def = &arg->defines[i];
-					if (reg & def->value || (!def->value && !reg))
-					{
-						if (str){
-							str = ft_join("%s|%s", str, def->name);
-						}
-						else
-							str = strdup(def->name);
-					}
-					i++;
-				}
-				if (str)
-					fprintf(stderr, "%s", str);
-			}
+			else if (arg->type == BITS)
+				ft_getdef(arg, reg);
+			else if (arg->type == LETERAL)
+				ft_getliteral(arg, reg);
 			index++;
 			if (index < sys->args_count)
 				fprintf(stderr, ", ");
