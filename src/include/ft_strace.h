@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/05 19:47:32 by sid-bell          #+#    #+#             */
-/*   Updated: 2020/08/06 13:45:59 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/08/06 14:17:39 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_STRACE_H
 # define MAP_DENYWRITE 2048
 # define MAP_ANONYMOUS 32
+# define STRMAX 20
 # include <sys/mman.h>
 # include <errno.h>
 # include <limits.h>

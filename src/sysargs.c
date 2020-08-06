@@ -6,12 +6,11 @@
 /*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 12:07:56 by sid-bell          #+#    #+#             */
-/*   Updated: 2020/08/06 13:55:33 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/08/06 14:17:29 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_strace.h"
-#define STRMAX 20
 
 char	*getargstring(int pid, u_int64_t reg, u_int8_t max)
 {
