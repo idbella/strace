@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/05 19:47:32 by sid-bell          #+#    #+#             */
-/*   Updated: 2020/08/06 14:17:39 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/08/07 18:44:40 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ char	*getargstring(int pid, u_int64_t reg, u_int8_t max);
 void	ft_getdef(t_arg *arg, u_int64_t reg);
 void	ft_getstring(int id, int pid, u_int64_t reg);
 void	ft_getliteral(t_arg *arg, u_int64_t reg);
+char    *ft_getexec(char *name);
 #endif

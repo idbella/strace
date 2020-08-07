@@ -6,7 +6,7 @@
 #    By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/01 06:02:07 by sid-bell          #+#    #+#              #
-#    Updated: 2020/08/06 13:57:13 by sid-bell         ###   ########.fr        #
+#    Updated: 2020/08/07 18:47:15 by sid-bell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ INC= -Isrc/include
 
 OBJ=src/main.o src/validate.o src/run.o\
 	src/get_syscalls.o src/error.o\
-	src/syscall_name.o src/sysargs.o
+	src/syscall_name.o src/sysargs.o\
+	src/getexec.o
 
 CFLAGS = $(INC) $(FLAGS)
 

@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 23:37:15 by sid-bell          #+#    #+#             */
-/*   Updated: 2020/07/16 23:37:21 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/08/07 18:46:48 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_validatefile(char *file)
 {
 	struct stat st;
-	if (access(file, F_OK))
+	if (!file || access(file, F_OK))
 	{
 		ft_printf("no such file or directory\n");
 		return (1);
